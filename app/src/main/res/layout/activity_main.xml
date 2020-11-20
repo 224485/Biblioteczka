@@ -23,8 +23,8 @@
             app:layout_constraintTop_toBottomOf="@+id/txtName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" android:background="@color/colorAccent"
-            android:backgroundTint="#9ADF4A" app:layout_constraintHorizontal_bias="1.0"/>
+            android:layout_marginTop="16dp" android:background="@color/colorAccent"
+            android:backgroundTint="#9ADF4A" app:layout_constraintHorizontal_bias="0.48"/>
     <Button
             android:text="Czytaj dalej..."
             android:layout_width="360dp"
@@ -32,7 +32,8 @@
             android:id="@+id/btnCurrentlyReading"
             android:textAllCaps="false" app:layout_constraintEnd_toEndOf="@+id/btnAllBooks"
             app:layout_constraintStart_toStartOf="@+id/btnAllBooks"
-            app:layout_constraintTop_toBottomOf="@+id/btnAllBooks" android:layout_marginTop="5dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnAllBooks" android:layout_marginTop="5dp"
+            android:backgroundTint="#9ADF4A"/>
     <Button
             android:text="Przeczytane"
             android:layout_width="360dp"
@@ -40,7 +41,8 @@
             android:id="@+id/btnAlreadyRead"
             android:textAllCaps="false" app:layout_constraintEnd_toEndOf="@+id/btnCurrentlyReading"
             app:layout_constraintStart_toStartOf="@+id/btnCurrentlyReading"
-            app:layout_constraintTop_toBottomOf="@+id/btnCurrentlyReading" android:layout_marginTop="5dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnCurrentlyReading" android:layout_marginTop="5dp"
+            android:backgroundTint="#9ADF4A"/>
     <Button
             android:text="Chcę..."
             android:layout_width="360dp"
@@ -48,7 +50,8 @@
             android:id="@+id/btnWantToRead"
             android:textAllCaps="false" app:layout_constraintStart_toStartOf="@+id/btnAlreadyRead"
             app:layout_constraintEnd_toEndOf="@+id/btnAlreadyRead"
-            app:layout_constraintTop_toBottomOf="@+id/btnAlreadyRead" android:layout_marginTop="5dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnAlreadyRead" android:layout_marginTop="5dp"
+            android:backgroundTint="#9ADF4A"/>
     <Button
             android:text="Ulubione książki"
             android:layout_width="360dp"
@@ -56,7 +59,8 @@
             android:id="@+id/btnFavorite"
             android:textAllCaps="false" app:layout_constraintStart_toStartOf="@+id/btnWantToRead"
             app:layout_constraintEnd_toEndOf="@+id/btnWantToRead"
-            app:layout_constraintTop_toBottomOf="@+id/btnWantToRead" android:layout_marginTop="5dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnWantToRead" android:layout_marginTop="5dp"
+            android:backgroundTint="#9ADF4A"/>
     <Button
             android:text="O programie"
             android:layout_width="360dp"
@@ -64,7 +68,7 @@
             android:id="@+id/btnAbout"
             android:textAllCaps="false" app:layout_constraintStart_toStartOf="@+id/btnFavorite"
             app:layout_constraintEnd_toEndOf="@+id/btnFavorite" app:layout_constraintTop_toBottomOf="@+id/btnFavorite"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp" android:backgroundTint="#9ADF4A"/>
     <ImageView
             android:layout_width="196dp"
             android:layout_height="193dp"
