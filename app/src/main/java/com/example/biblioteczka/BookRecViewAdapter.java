@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -65,12 +66,41 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         private ImageView imgBook;
         private TextView txtName;
 
+        private ImageView downArrow, upArrow;
+        private RelativeLayout expendedRelLayout;
+        private TextView txtAuthor, txtDescription;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.parent);
             imgBook = itemView.findViewById(R.id.imgBook);
             txtName = itemView.findViewById(R.id.txtBookName);
+
+            downArrow = itemView.findViewById(R.id.btnDownArrow);
+            upArrow = itemView.findViewById(R.id.btnUpArrow);
+            expendedRelLayout = itemView.findViewById(R.id.expendedRelLayout);
+            txtAuthor = itemView.findViewById(R.id.txtAuthor);
+            txtDescription = itemView.findViewById(R.id.txtShortDesc);
+
+            downArrow.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+
+                }
+            });
+
+            upArrow.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
-
 }
