@@ -70,8 +70,6 @@ public class Book {
         this.shortDesc = shortDesc;
     }
 
-
-
     @Override
     public String toString() {
         return "Book{" +

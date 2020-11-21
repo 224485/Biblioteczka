@@ -25,7 +25,7 @@ public class AllBooksActivity extends AppCompatActivity {
         booksRecView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<Book> books = new ArrayList<>();
-        //books.add(new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "", "Miecz czary i szpiegowska intryga"));
+        books.add(new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "", "Miecz czary i szpiegowska intryga"));
         adapter.setBooks(books);
 
     }
