@@ -15,21 +15,22 @@
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:id="@+id/collapsedRelLayout">
+
 
             <ImageView android:layout_width="200dp" android:layout_height="220dp"
                     android:id="@+id/imgBook"
-                    android:src="@mipmap/ic_launcher"
-                    android:contentDescription="@string/app_name"/>
+                    android:src="@mipmap/ic_launcher"/>
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Book Name"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_below="@+id/imgBook"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="7dp"
                     android:id="@+id/txtBookName"/>
+                    <!--android:layout_centerHorizontal="true"-->
 
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:src="@drawable/ic_down_arrow"
@@ -43,15 +44,16 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/collapsedRelLayout"
                 android:id="@+id/expendedRelLayout"
-                android:visibility="gone"/>
+                android:visibility="gone">
 
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="Author:"
                         android:id="@+id/authorText"/>
 
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Stachu"
+                        android:text="224485"
                         android:id="@+id/txtAuthor"
                         android:layout_below="@+id/authorText"/>
 
@@ -66,8 +68,9 @@
                         android:layout_below="@+id/txtShortDesc"
                         android:layout_alignParentEnd="true"
                         android:id="@+id/btnUpArrow"/>
-
         </RelativeLayout>
+
+    </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

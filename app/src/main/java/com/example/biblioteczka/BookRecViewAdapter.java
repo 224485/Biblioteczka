@@ -1,6 +1,7 @@
 package com.example.biblioteczka;
 
 import android.content.Context;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,19 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             }
         });
 
+        holder.txtAuthor.setText(books.get(position).getAuthor());
+        holder.txtDescription.setText(books.get(position).getShortDesc());
+
+        if(books.get(position).isExpanded()) {
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expendedRelLayout.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.GONE);
+        }
+        else {
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expendedRelLayout.setVisibility(View.GONE);
+            holder.downArrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -58,7 +72,6 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
         notifyDataSetChanged();
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
