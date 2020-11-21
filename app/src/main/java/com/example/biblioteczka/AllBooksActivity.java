@@ -24,8 +24,7 @@ public class AllBooksActivity extends AppCompatActivity {
         booksRecView.setLayoutManager(new GridLayoutManager(this, 2));
 
         ArrayList<Book> books = new ArrayList<>();
-        books.add(new Book(1,"Wiedźmin: Krew Elfów", "Andrzej Sapkowski",
-                295, "https://image.ceneostatic.pl/data/products/33143711/i-wiedzmin-3-krew-elfow.jpg", "Miecz czary i szpiegowska intryga"));
+        //books.add(new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "", "Miecz czary i szpiegowska intryga"));
         adapter.setBooks(books);
 
     }
