@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,9 +24,12 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
     private ArrayList<Book> books = new ArrayList<>();
     private Context mContext;
+    private String parentActivity;
 
-    public BookRecViewAdapter(Context mContext) {
+
+    public BookRecViewAdapter(Context mContext, String parentActivity) {
         this.mContext = mContext;
+        this.parentActivity = parentActivity;
     }
 
     @NonNull
@@ -61,6 +63,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expendedRelLayout.setVisibility(View.VISIBLE);
             holder.downArrow.setVisibility(View.GONE);
+
         }else {
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expendedRelLayout.setVisibility(View.GONE);

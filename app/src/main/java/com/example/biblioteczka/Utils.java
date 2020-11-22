@@ -8,6 +8,7 @@ public class Utils {
     private static ArrayList<Book> alreadyReadBooks;
     private static ArrayList<Book> wantToReadBooks;
     private static ArrayList<Book> favoriteBooks;
+    private static ArrayList<Book> currentlyReadingBooks;
 
     private Utils(){
         if (null == allBooks) {
@@ -26,11 +27,8 @@ public class Utils {
     }
 
     private void initData() {
-
         allBooks.add(new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "https://cf1-taniaksiazka.statiki.pl/images/large/0F7/9788375780659.jpg", "Miecz czary i szpiegowska intryga"));
         allBooks.add(new Book(2,"Wiedzmin Ostatnie Zyczenie", "Andrzej Sapkowski", 332, "https://cf1-taniaksiazka.statiki.pl/images/large/123/68007901377KS.jpg", "Otawrcie wiedźmińskiej sagi"));
-
-        //TODO: add initial data
     }
 
     public static Utils getInstance() {
@@ -58,6 +56,10 @@ public class Utils {
         return favoriteBooks;
     }
 
+    public static ArrayList<Book> getCurrentlyReadingBooks() {
+        return currentlyReadingBooks;
+    }
+
     public Book getBookById(int id) {
         for (Book b: allBooks){
             if (b.getId() == id) {
@@ -65,5 +67,21 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public boolean addToAlreadyRead(Book book) {
+        return alreadyReadBooks.add(book);
+    }
+
+    public boolean addToWantToRead (Book book) {
+        return wantToReadBooks.add(book);
+    }
+
+    public boolean addToCurrentlyReading (Book book) {
+        return currentlyReadingBooks.add(book);
+    }
+
+    public boolean addToFavorite (Book book) {
+        return favoriteBooks.add(book);
     }
 }
