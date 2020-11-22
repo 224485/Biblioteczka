@@ -18,6 +18,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import static com.example.biblioteczka.BookActivity.BOOK_ID_KEY;
+
 public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.ViewHolder> {
     private static final String TAG = "BookRecViewAdapter";
 
@@ -47,6 +49,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             @Override
             public void onClick(View v) {
                 Intent  intent = new Intent(mContext,BookActivity.class);
+                intent.putExtra(BOOK_ID_KEY, books.get(position).getId());
                 mContext.startActivity(intent);
             }
         });
@@ -58,8 +61,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expendedRelLayout.setVisibility(View.VISIBLE);
             holder.downArrow.setVisibility(View.GONE);
-        }
-        else {
+        }else {
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expendedRelLayout.setVisibility(View.GONE);
             holder.downArrow.setVisibility(View.VISIBLE);

@@ -1,5 +1,6 @@
 package com.example.biblioteczka;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 public class BookActivity extends AppCompatActivity {
+    public static final String BOOK_ID_KEY = "bookId";
     private TextView txtBookName, txtAuthor, txtPages, txtDescription;
     private Button btnAddToWantToRead, btnAddToAlreadyRead, btnAddToCurrentlyReading, btnAddToFavorite;
     private ImageView bookImage;
@@ -16,12 +18,18 @@ public class BookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
-        
         initViews();
-        //TODO: Get the data from recycler view in here
-        Book book = new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "https://cf1-taniaksiazka.statiki.pl/images/large/0F7/9788375780659.jpg", "Miecz czary i szpiegowska intryga");
 
-        setData(book);
+        Intent intent = getIntent();
+        if (null != intent) {
+            int bookId = intent.getIntExtra(BOOK_ID_KEY, -1);
+            if (bookId != -1) {
+                Book incomingBook = Utils.getInstance().getBookById(bookId);
+                if (null != incomingBook) {
+                    setData(incomingBook);
+                }
+            }
+        }
     }
 
     private void setData(Book book) {
