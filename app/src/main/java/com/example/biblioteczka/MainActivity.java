@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAllBooks, btnAlreadyRead, btnWantToRead, btnCurrentlyReading, btnAbout;
+    private Button btnAllBooks, btnAlreadyRead, btnWantToRead, btnCurrentlyReading,btnFavorite, btnAbout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent( MainActivity.this, FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Utils.getInstance();
     }
 
@@ -56,5 +63,6 @@ public class MainActivity extends AppCompatActivity {
         btnCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
         btnWantToRead = findViewById(R.id.btnWantToRead);
         btnAlreadyRead = findViewById(R.id.btnAlreadyRead);
+        btnFavorite = findViewById(R.id.btnFavorite);
     }
 }
