@@ -1,8 +1,10 @@
 package com.example.biblioteczka;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -51,6 +53,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( MainActivity.this, FavoriteActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(getString(R.string.app_name));
+                builder.setMessage("Zaprogramowany z myślą o zysku dla wyzysku, Polskie studio nie mające pojęcia co robią chcesz zobaczyć?");
+                builder.setNegativeButton("Nie, chcę", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setPositiveButton("Sprawdź", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainActivity.this, WebsiteActivity.class);
+                        intent.putExtra("url", "https://uszanowanko.pl/");
+                        startActivity(intent);
+                    }
+                });
+                builder.create().show();
             }
         });
 
