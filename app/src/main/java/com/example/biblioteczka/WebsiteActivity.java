@@ -17,7 +17,7 @@ public class WebsiteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(null != intent) {
-            String url = new String();
+            String url = intent.getStringExtra("url");
             webView = findViewById(R.id.webView);
             webView.loadUrl(url);
             webView.setWebViewClient(new WebViewClient());

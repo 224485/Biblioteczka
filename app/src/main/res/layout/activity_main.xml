@@ -15,7 +15,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="5dp"
             android:fontFamily="@font/alex_brush" android:textSize="30sp"/>
     <Button
-            android:text="Ksiazki"
+            android:text="@string/activity_all_books"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:id="@+id/btnAllBooks"

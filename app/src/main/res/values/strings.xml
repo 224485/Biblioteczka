@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Biblioteczka</string>
+    <string name="activity_all_books">Książki</string>
+    <string name="activity_book">Szczegóły książki</string>
+    <string name="activity_already_read">Przeczytane</string>
+    <string name="activity_favorite_books">Ulubione</string>
+    <string name="activity_want_to_read">Lista życzeń</string>
+    <string name="activity_currently_reading">Czytam...</string>
+
+    <string name="already_read">Przeczytane</string>
+    <string name="currently_read">Czytam...</string>
+    <string name="favorite_book">Do ulubionych...</string>
+    <string name="will_read">Przeczytam...</string>
+
+
+
 </resources>
