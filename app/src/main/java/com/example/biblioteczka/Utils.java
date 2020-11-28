@@ -49,8 +49,11 @@ public class Utils {
     private void initData() {
         ArrayList<Book> books = new ArrayList<>();
 
-        books.add(new Book(1,"Wiedzmin Krew Elfow", "Andrzej Sapkowski", 295, "https://cf1-taniaksiazka.statiki.pl/images/large/0F7/9788375780659.jpg", "Miecz czary i szpiegowska intryga"));
-        books.add(new Book(2,"Wiedzmin Ostatnie Zyczenie", "Andrzej Sapkowski", 332, "https://cf1-taniaksiazka.statiki.pl/images/large/123/68007901377KS.jpg", "Otawrcie wiedźmińskiej sagi"));
+        books.add(new Book(1, "Android", "Andrzej Staszewicz", 281, "https://static01.helion.com.pl/global/okladki/326x466/andrpa_3.png", "Podstawy tworzenia aplikacji"));
+        books.add(new Book(2, "Android Studio", "Andrzej Staszewicz", 232, "https://static01.helion.com.pl/global/okladki/326x466/andpt2.jpg", "Podstawy tworzenia aplikacji"));
+        books.add(new Book(3, "Learning Android", "M. Gargent & M. Nakamura", 286, "https://images-na.ssl-images-amazon.com/images/I/91ih4vFDWZL.jpg", "Develop mobile apps"));
+        books.add(new Book(4, "Android Studio", "Marcin Płonkowski", 400, "https://static01.helion.com.pl/global/okladki/326x466/anstam.jpg", "Tworzenie aplikacji mobilnych"));
+        books.add(new Book(5, "Java", "Jeff Friesen", 624, "https://static01.helion.com.pl/global/okladki/326x466/jappan.jpg", "Przygotowanie do programowania na platformę Android"));
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
