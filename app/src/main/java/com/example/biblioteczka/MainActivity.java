@@ -1,95 +1,130 @@
 package com.example.biblioteczka;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAllBooks, btnAlreadyRead, btnWantToRead, btnCurrentlyReading,btnFavorite, btnAbout;
+    RecyclerView recyclerView;
+    FloatingActionButton add_button;
+    ImageView empty_imageview;
+    TextView no_data;
+
+    MyDatabaseHelper myDB;
+    ArrayList<String> book_id, book_title, book_author, book_pages;
+    CustomAdapter customAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
 
-        btnAllBooks.setOnClickListener(new View.OnClickListener() {
+        recyclerView = findViewById(R.id.recyclerView);
+        add_button = findViewById(R.id.add_button);
+        empty_imageview = findViewById(R.id.empty_imageview);
+        no_data = findViewById(R.id.no_data);
+        add_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnAlreadyRead.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlreadyReadBookActivity.class);
-                startActivity(intent);
-            }
-        });
+        myDB = new MyDatabaseHelper(MainActivity.this);
+        book_id = new ArrayList<>();
+        book_title = new ArrayList<>();
+        book_author = new ArrayList<>();
+        book_pages = new ArrayList<>();
 
-        btnWantToRead.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WantToReadActivity.class);
-                startActivity(intent);
-            }
-        });
+        storeDataInArrays();
 
-        btnCurrentlyReading.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
-                startActivity(intent);
-            }
-        });
+        customAdapter = new CustomAdapter(MainActivity.this,this, book_id, book_title, book_author,
+                book_pages);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent( MainActivity.this, FavoriteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnAbout.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(getString(R.string.app_name));
-                builder.setMessage("Zaprogramowany z myślą o zysku dla wyzysku, Polskie studio nie mające pojęcia co robią chcesz zobaczyć?");
-                builder.setNegativeButton("Nie, chcę", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                builder.setPositiveButton("Sprawdź", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MainActivity.this, WebsiteActivity.class);
-                        intent.putExtra("url", "https://uszanowanko.pl/");
-                        startActivity(intent);
-                    }
-                });
-                builder.create().show();
-            }
-        });
-
-        Utils.getInstance(this);
     }
 
-    private void initViews() {
-        btnAllBooks = findViewById(R.id.btnAllBooks);
-        btnAbout = findViewById(R.id.btnAbout);
-        btnCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
-        btnWantToRead = findViewById(R.id.btnWantToRead);
-        btnAlreadyRead = findViewById(R.id.btnAlreadyRead);
-        btnFavorite = findViewById(R.id.btnFavorite);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
+    }
+
+    void storeDataInArrays(){
+        Cursor cursor = myDB.readAllData();
+        if(cursor.getCount() == 0){
+            empty_imageview.setVisibility(View.VISIBLE);
+            no_data.setVisibility(View.VISIBLE);
+        }else{
+            while (cursor.moveToNext()){
+                book_id.add(cursor.getString(0));
+                book_title.add(cursor.getString(1));
+                book_author.add(cursor.getString(2));
+                book_pages.add(cursor.getString(3));
+            }
+            empty_imageview.setVisibility(View.GONE);
+            no_data.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.delete_all){
+            confirmDialog();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete All?");
+        builder.setMessage("Are you sure you want to delete all Data?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MyDatabaseHelper myDB = new MyDatabaseHelper(MainActivity.this);
+                myDB.deleteAllData();
+                //Refresh Activity
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create().show();
     }
 }

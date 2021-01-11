@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.biblioteczka">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -11,30 +9,22 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".WebsiteActivity"/>
-        <activity android:name=".CurrentlyReadingActivity"
-            android:label="@string/activity_currently_reading"/>
-        <activity android:name=".FavoriteActivity"
-            android:label="@string/activity_favorite_books"/>
-        <activity android:name=".WantToReadActivity"
-            android:label="@string/activity_want_to_read"/>
-        <activity android:name=".AlreadyReadBookActivity"
-            android:label="@string/activity_already_read"/>
-        <activity android:name=".BookActivity"
-            android:label="@string/activity_book"/>
-        <activity android:name=".AllBooksActivity"
-            android:label="@string/activity_all_books"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".UpdateActivity"
+                  android:parentActivityName=".MainActivity"/>
+        <activity
+                android:name=".AddActivity"
+                android:label="Add Book"
+                android:parentActivityName=".MainActivity" />
+        <activity
+                android:name=".MainActivity"
+                android:label="Book Library">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-                android:name="preloaded_fonts"
-                android:resource="@array/preloaded_fonts"/>
     </application>
 
 </manifest>
